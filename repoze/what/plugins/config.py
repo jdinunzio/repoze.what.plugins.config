@@ -2,6 +2,7 @@
 # repoze.what paster config. Based on repoze.who.config.WhoConfig
 
 from ConfigParser import ConfigParser
+from StringIO import StringIO
 
 from pkg_resources import EntryPoint
 from repoze.who.config import WhoConfig

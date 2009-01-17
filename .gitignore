@@ -1,0 +1,6 @@
+.*
+*~
+*.pyc
+docs/build/
+docs/html/
+repoze.what.plugins.config.egg-info/
