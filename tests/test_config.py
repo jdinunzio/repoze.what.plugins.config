@@ -50,6 +50,6 @@ class TestWhatConfig(unittest.TestCase):
             assert plugin in wc.plugins
         assert 'mydict' in wc.group_adapters
         assert 'myotherdict' in wc.group_adapters
-        assert 'mydict' in wc.permission_adapters
-        assert 'myotherdict' not in wc.permission_adapters
+        assert 'mydict' not in wc.permission_adapters
+        assert 'myotherdict' in wc.permission_adapters
 
