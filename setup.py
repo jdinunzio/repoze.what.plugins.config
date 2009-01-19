@@ -25,6 +25,6 @@ setup(name='repoze.what.plugins.config',
       namespace_packages=['repoze', 'repoze.what', 'repoze.what.plugins'],
       entry_points='''\
       [paste.filter_app_factory]
-      config = repoze.what.config:make_middleware_with_config
+      config = repoze.what.plugins.config:make_middleware_with_config
       ''',
       )
