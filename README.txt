@@ -1,5 +1,5 @@
-repoze.what.config -- repoze.what with pasterconfig
-=================================================================
+repoze.what.plugins.config -- repoze.what with pasterconfig
+===========================================================
 
 .. topic:: Overview
 
