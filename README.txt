@@ -13,11 +13,7 @@ repoze.what.config -- repoze.what with pasterconfig
 Installing repoze.what.plugins.config
 =====================================
 
-You can install repoze.what.plugins.config using easy_install::
-
-    easy_install repoze.what.plugins.config
-
-Or you can install the development version using git::
+You can install repoze.what.plugins.config using git::
 
     git clone git://github.com/jdinuncio/repoze.what.plugins.config.git
     cd repoze.what.plugins.config
