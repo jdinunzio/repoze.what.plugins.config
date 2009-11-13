@@ -7,7 +7,8 @@ from StringIO import StringIO
 from pkg_resources import EntryPoint
 from repoze.who.config import WhoConfig
 from repoze.what.middleware import setup_auth
-
+import sys
+import logging
 
 class WhatConfig:
     def __init__(self, here):
@@ -49,15 +50,34 @@ class WhatConfig:
                 self._parsePluginSequence(self.permission_adapters, 
                                           what['permission_adapters'])
 
+_LEVELS = {'debug': logging.DEBUG,
+           'info': logging.INFO,
+           'warning': logging.WARNING,
+           'error': logging.ERROR,
+          }
 
 def make_middleware_with_config(app, global_conf, config_file,
-                                who_config_file = ''):
+                                who_config_file = '',
+                                log_file=None, log_level=None):
     if not who_config_file:
         who_config_file = config_file
     who_parser = WhoConfig(global_conf['here'])
     who_parser.parse(open(who_config_file))
     what_parser = WhatConfig(global_conf['here'])
     what_parser.parse(open(config_file))
+
+    log_stream = None
+
+    if log_file is not None:
+        if log_file.lower() == 'stdout':
+            log_stream = sys.stdout
+        else:
+            log_stream = open(log_file, 'wb')
+
+    if log_level is None:
+        log_level = logging.INFO
+    else:
+        log_level = _LEVELS[log_level.lower()]
 
     return setup_auth(app,
                       group_adapters=what_parser.group_adapters,
@@ -67,6 +87,9 @@ def make_middleware_with_config(app, global_conf, config_file,
                       challengers=who_parser.challengers,
                       mdproviders=who_parser.mdproviders,
                       classifier=who_parser.request_classifier,
-                      challenge_decider=who_parser.challenge_decider
+                      challenge_decider=who_parser.challenge_decider,
+                      log_stream = log_stream,
+                      log_level = log_level,
+                      remote_user_key = who_parser.remote_user_key,
                      )
 
