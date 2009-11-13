@@ -4,7 +4,7 @@ import sys, os
 
 here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.txt')).read()
-version = open(os.path.join(here, 'VERSION.txt')).readline().rstrip()
+version = '0.2.1'
 
 setup(name='repoze.what.plugins.config',
       version=version,
@@ -17,6 +17,7 @@ setup(name='repoze.what.plugins.config',
       url='http://github.com/jdinuncio/repoze.what.plugins.config/tree/master',
       license='BSD-derived (see http://www.repoze.org/LICENSE.txt)',
       packages=find_packages(),
+      package_data = {'': ['*.txt']},
       include_package_data=True,
       zip_safe=False,
       tests_require=['repoze.what', 'nose'],
